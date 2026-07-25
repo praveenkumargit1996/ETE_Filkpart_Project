@@ -20,10 +20,10 @@ public class ProductPage extends BasePage {
 
     /* ---------- Locators ---------- */
     private final By productTitle =
-            By.xpath("Product Title Locator");
+            By.xpath("//h1[text()='Apple iPhone 17 (Black, 256 GB)']");
 
     private final By productPrice =
-            By.xpath("Product Price Locator");
+            By.xpath("//div[@class='v1zwn21l v1zwn20 _1psv1zeb9 _1psv1ze0']");
 
     private final By addToCartButton =
             By.xpath("Add To Cart Locator");
