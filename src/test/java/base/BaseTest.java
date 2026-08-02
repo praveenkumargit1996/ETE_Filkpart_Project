@@ -17,7 +17,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected ConfigReader configReader;
     protected FrameworkConfig frameworkConfig;
-    protected WaitUtils waitUtils;
+//    protected WaitUtils waitUtils;
 
     private static final Logger logger =
             LogManager.getLogger(BaseTest.class);
@@ -39,9 +39,8 @@ public class BaseTest {
              1 TestNG parameter
              2 System property
              3 Config file
-             */
 
-           /* String browserName =
+           String browserName =
                     browser != null ? browser : System.getProperty(
                             "browser", configReader.getBrowser());
 */
@@ -51,13 +50,16 @@ public class BaseTest {
 
             driver = DriverFactory.getDriver();
 
-            waitUtils = new WaitUtils(driver);
+            // we removed the waitUtils initialization here because we are now initializing it in the BasePage constructor, which is called when a page object is created.
+            // This ensures that waitUtils is always available when interacting with page elements.
+       //     waitUtils = new WaitUtils(driver);
 
             logger.info("Opening application URL");
 
             driver.get(frameworkConfig.getUrl());
 
-            waitUtils.waitForPageLoad();
+          //  waitUtils.waitForPageLoad();
+            new WaitUtils(driver).waitForPageLoad();
 
             logger.info("Application launched successfully");
 

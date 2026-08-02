@@ -20,13 +20,13 @@ public class ProductPage extends BasePage {
 
     /* ---------- Locators ---------- */
     private final By productTitle =
-            By.xpath("//h1[text()='Apple iPhone 17 (Black, 256 GB)']");
+            By.xpath("//h1");
 
     private final By productPrice =
             By.xpath("//div[@class='v1zwn21l v1zwn20 _1psv1zeb9 _1psv1ze0']");
 
     private final By addToCartButton =
-            By.xpath("Add To Cart Locator");
+            By.xpath("//*[local-name()='clipPath' and @id='AddToCart_a']/ancestor::div[2]");
 
     /* ---------- Validation ---------- */
     public boolean isPageLoaded() {
@@ -65,10 +65,7 @@ public class ProductPage extends BasePage {
 
         logger.info("Fetching product title");
 
-        waitUtils.waitForVisibility(productTitle);
-
-        return driver.findElement(productTitle)
-                .getText();
+        return elementUtils.getText(productTitle);
     }
 
     public boolean isCorrectProductDisplayed(String expectedProduct) {
