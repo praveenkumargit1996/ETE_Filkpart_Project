@@ -8,9 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductPage extends BasePage {
 
-    //private WebDriver driver;
-  //  private WaitUtils waitUtils;
-
     private static final Logger logger = LogManager.getLogger(ProductPage.class);
 
     public ProductPage(WebDriver driver) {
