@@ -22,7 +22,7 @@ public class ProductPage extends BasePage {
     private final By productPrice =
             By.xpath("//div[@class='v1zwn21l v1zwn20 _1psv1zeb9 _1psv1ze0']");
 
-    private final By addToCartButton =
+    private final By cartIcon =
             By.xpath("//*[local-name()='clipPath' and @id='AddToCart_a']/ancestor::div[2]");
 
     /* ---------- Validation ---------- */
@@ -51,9 +51,9 @@ public class ProductPage extends BasePage {
 
         logger.info("Checking Add To Cart button");
 
-        waitUtils.waitForVisibility(addToCartButton);
+        waitUtils.waitForVisibility(cartIcon);
 
-        return driver.findElement(addToCartButton)
+        return driver.findElement(cartIcon)
                 .isDisplayed();
     }
 
@@ -75,17 +75,24 @@ public class ProductPage extends BasePage {
 
     }
 
-    public CartPage addToCart() {
+    public ProductPage addToCart() {
 
         logger.info("Adding product to cart");
 
-        waitUtils.waitForClickability(addToCartButton);
+        elementUtils.click(cartIcon);
 
-        driver.findElement(addToCartButton)
-                .click();
+        return this;
+    }
+
+    public CartPage openCart() {
+
+        logger.info("Opening cart");
+
+      //  actionUtils.hover(cartIcon);
+        //   elementUtils.click(cartIcon);
+        actionUtils.hoverAndClick(cartIcon);
 
         return new CartPage(driver);
-
     }
 
 }

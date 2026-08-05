@@ -21,8 +21,8 @@ public class CartPage extends BasePage {
                     Locators
     ----------------------------------------------------------*/
 
-private final By cartTitle =
-        By.xpath("Cart Page Locator");
+private final By placeOrderButton =
+        By.xpath("(//div[normalize-space()='Place Order'])[last()]");
 
 private final By productTitle =
         By.xpath("Cart Product Title Locator");
@@ -34,7 +34,7 @@ private final By quantity =
         By.xpath("Quantity Locator");
 
 private final By proceedToCheckoutButton =
-        By.xpath("Proceed To Checkout Locator");
+        By.xpath("(//div[normalize-space()='Place Order'])[last()]");
 
     /*---------------------------------------------------------
                 Page Validation
@@ -44,9 +44,9 @@ public boolean isPageLoaded() {
 
     logger.info("Verifying Cart Page loaded");
 
-    waitUtils.waitForVisibility(cartTitle);
+    waitUtils.waitForVisibility(placeOrderButton);
 
-    return driver.findElement(cartTitle)
+    return driver.findElement(placeOrderButton)
             .isDisplayed();
 }
     /*---------------------------------------------------------
@@ -73,7 +73,7 @@ public String getProductPrice() {
             .getText();
 }
 
-public int getQuantity() {
+public int getProductQuantity() {
 
     logger.info("Fetching product quantity");
 
@@ -101,7 +101,7 @@ public boolean isQuantityOne() {
 
     logger.info("Validating quantity equals one");
 
-    return getQuantity() == 1;
+    return getProductQuantity() == 1;
 }
 
 public boolean isPriceMatching(String expectedPrice) {
@@ -111,6 +111,13 @@ public boolean isPriceMatching(String expectedPrice) {
     return getProductPrice()
             .equals(expectedPrice);
 }
+
+    public boolean isPlaceOrderButtonVisible(){
+
+        logger.info("Checking Place Order button");
+        return elementUtils.isDisplayed(placeOrderButton);
+
+    }
 
     /*---------------------------------------------------------
                 Business Actions

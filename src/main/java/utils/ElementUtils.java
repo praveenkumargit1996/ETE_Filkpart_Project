@@ -62,4 +62,9 @@ public class ElementUtils {
                 "Unable to get text after retry.");
     }
 
+    public boolean isDisplayed(By locator) {
+
+        waitUtils.waitForVisibility(locator);
+        return driver.findElement(locator).isDisplayed();
+    }
 }
